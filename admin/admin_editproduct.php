@@ -63,6 +63,9 @@ if (isset($_POST['submit'])) {
   <form action="admin_editproduct.php" method="post" enctype="multipart/form-data">
 
   <div class="form-group">
+    <div >
+      <img style="width: 100px;" src="../../images/<?php echo $product['product_img']; ?>" alt="<?php echo $product['product_name'] ?>">
+    </div>
   <label for="image">Product Image:</label>
   <input type="file" name="image" id="image" value="">
   </div>
