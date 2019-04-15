@@ -50,7 +50,7 @@ if (isset($_GET['success'])) {
   <div class="card-body">
     <h5 class="card-title"><?php echo $row['product_name']; ?></h5>
     <p class="card-text"><?php echo $row['product_description']; ?></p>
-    <a href="admin_editproduct.php" class="btn btn-primary">Edit</a>
+    <a href="admin_editproduct.php/?product=<?php echo $row['product_id'] ?>" class="btn btn-primary">Edit</a>
     <a href="admin_deleteproduct.php" class="btn btn-primary">Delete</a>
   </div>
 </div>

@@ -22,10 +22,16 @@ if (isset($_POST['submit'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
   <title>Add Products</title>
 </head>
 <body>
+  <br>
   <div class="container">
+  <a class="btn btn-outline-info" href="./index.php" role="button"><i class="fas fa-arrow-left"></i> Admin Dashboard</a>
+  <br><br>
   <h1>Add Products</h1>
   <form action="admin_addproduct.php" method="post" enctype="multipart/form-data">
 
