@@ -56,11 +56,11 @@ if (isset($_POST['submit'])) {
 <body>
   <br>
   <div class="container">
-  <a class="btn btn-outline-info" href="index.php" role="button"><i class="fas fa-arrow-left"></i> Admin Dashboard</a>
+  <a class="btn btn-outline-info" href="../index.php" role="button"><i class="fas fa-arrow-left"></i> Admin Dashboard</a>
   <br><br>
   <h1>Edit Product</h1>
   <?php if ($product = $found_product->fetch(PDO::FETCH_ASSOC)): ?>
-  <form action="admin_editproduct.php" method="post" enctype="multipart/form-data">
+  <form action="" method="post" enctype="multipart/form-data">
 
   <div class="form-group">
     <div >
@@ -82,8 +82,8 @@ if (isset($_POST['submit'])) {
   <input class="form-control" rows="1" type="text" name="price" id="price" value="<?php echo $product['product_price'] ?>">
   </div>
   <div class="form-group">
-    <label for="exampleFormControlSelect1">Product Category</label>
-    <select class="form-control" id="exampleFormControlSelect1">
+    <label for="category">Product Category</label>
+    <select class="form-control" id="category" name="category">
       <option value="<?php echo $product['cat_id']; ?>"><?php echo $prod_cat_name['cat_name'] ?></option>
       <?php while ($row = $product_categories->fetch(PDO::FETCH_ASSOC)): ?>
       <option value="<?php echo $row['cat_id'] ?>"><?php echo $row['cat_name'] ?></option>
