@@ -12,24 +12,25 @@ if (isset($_GET['success'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- <link rel="stylesheet" href="../css/login.css"> -->
   <title>Admin Dashboard</title>
 </head>
-<body id="admin-dash">
-<div class="jumbotron">
-  <h1 class="display-4 text-info">Admin Dashboard</h1>
-  <hr class="my-4">
-  <h2 class="text-muted">Welcome <?php echo $_SESSION['user_name']; ?></h2>
-  <h3 class="text-muted"> <?php echo $message; ?></h3>
-  <h4 class="text-muted">Your Last Login Was on <?php echo $readable_date; ?></h4>
 
-</div>
+<body id="admin-dash">
+  <div class="jumbotron">
+    <h1 class="display-4 text-info">Admin Dashboard</h1>
+    <hr class="my-4">
+    <h2 class="text-muted">Welcome <?php echo $_SESSION['user_name']; ?></h2>
+    <h3 class="text-muted"> <?php echo $message; ?></h3>
+    <h4 class="text-muted">Your Last Login Was on <?php echo $readable_date; ?></h4>
+
+  </div>
 
 
   <nav>
@@ -44,14 +45,15 @@ if (isset($_GET['success'])) {
     </ul>
   </nav>
 
-  <?php while ($row = $products->fetch(PDO::FETCH_ASSOC)): ?>
-  <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="../images/<?php echo $row['product_img']; ?>" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title"><?php echo $row['product_name']; ?></h5>
-    <p class="card-text"><?php echo $row['product_description']; ?></p>
-    <a href="admin_editproduct.php/?product=<?php echo $row['product_id'] ?>" class="btn btn-primary">Edit</a>
-    <a href="admin_deleteproduct.php" class="btn btn-primary">Delete</a>
-  </div>
-</div>
-<?php endwhile;?>
+  <div style="display: grid; grid-template-columns: auto auto auto;" class="container">
+    <?php while ($row = $products->fetch(PDO::FETCH_ASSOC)): ?>
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="../images/<?php echo $row['product_img']; ?>" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><?php echo $row['product_name']; ?></h5>
+          <p class="card-text"><?php echo trim_length($row['product_description'], 100); ?></p>
+          <a href="admin_editproduct.php" class="btn btn-primary">Edit</a>
+          <a href="admin_deleteproduct.php" class="btn btn-danger">Delete</a>
+        </div>
+      </div>
+    <?php endwhile;?></div>

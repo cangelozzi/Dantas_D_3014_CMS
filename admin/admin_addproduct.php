@@ -11,12 +11,13 @@ if (isset($_POST['submit'])) {
     $desc = trim($_POST['desc']);
     $price = trim($_POST['price']);
     $category = trim($_POST['category']);
-    $result = addMovie($image, $title, $desc, $price, $category);
+    $result = addProduct($image, $title, $desc, $price, $category);
     $message = $result;
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,6 +28,7 @@ if (isset($_POST['submit'])) {
 
   <title>Add Products</title>
 </head>
+
 <body>
   <br>
   <div class="container">
@@ -35,33 +37,34 @@ if (isset($_POST['submit'])) {
   <h1>Add Products</h1>
   <form action="admin_addproduct.php" method="post" enctype="multipart/form-data">
 
-  <div class="form-group">
-  <label for="image">Product Image:</label>
-  <input type="file" name="image" id="image" value="">
+      <div class="form-group">
+        <label for="image">Product Image:</label>
+        <input type="file" name="image" id="image" value="">
+      </div>
+      <div class="form-group">
+        <label for="title">Product Title:</label>
+        <input type="text" name="title" id="title" value="">
+      </div>
+      <div class="form-group">
+        <label for="desc">Product Description:</label>
+        <textarea class="form-control" name="desc" id="desc" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="price">Product Price:</label>
+        <input type="text" name="price" id="price" value="">
+      </div>
+      <div class="form-group">
+        <label for="category">Product Category</label>
+        <select class="form-control" id="category" name="category">
+          <option>--Select a Category--</option>
+          <?php while ($row = $product_categories->fetch(PDO::FETCH_ASSOC)): ?>
+            <option value="<?php echo $row['cat_id'] ?>"><?php echo $row['cat_name'] ?></option>
+          <?php endwhile?>
+        </select>
+      </div>
+      <button class="btn btn-primary mb-2" type="submit" name="submit">Add Product</button>
+    </form>
   </div>
-  <div class="form-group">
-  <label for="title">Product Title:</label>
-  <input type="text" name="title" id="title" value="">
-  </div>
-  <div class="form-group">
-  <label for="desc">Product Description:</label>
-  <textarea name="desc" id="desc"></textarea>
-  </div>
-  <div class="form-group">
-  <label for="price">Product Price:</label>
-  <input type="text" name="price" id="price" value="">
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Product Category</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>--Select a Category--</option>
-      <?php while ($row = $product_categories->fetch(PDO::FETCH_ASSOC)): ?>
-      <option value="<?php echo $row['cat_id'] ?>"><?php echo $row['cat_name'] ?></option>
-      <?php endwhile?>
-    </select>
-  </div>
-  <button class="btn-primary" type="submit" name="submit">Add Product</button>
-</form>
-</div>
 </body>
+
 </html>
