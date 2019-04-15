@@ -2,14 +2,12 @@
 -- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 29, 2019 at 02:47 PM
--- Server version: 5.7.20
--- PHP Version: 7.1.23
+-- Host: localhost:8889
+-- Generation Time: Apr 15, 2019 at 07:13 PM
+-- Server version: 5.6.38
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -41,10 +39,10 @@ INSERT INTO `tbl_category` (`cat_id`, `cat_name`) VALUES
 (1, 'Men'),
 (2, 'Women'),
 (3, 'Kids'),
-(4, 'Footware & Shoes'),
+(4, 'Footware'),
 (5, 'Gear'),
 (6, 'Electronics'),
-(7, 'Jersey & Fan Wear');
+(7, 'Fan Wear');
 
 -- --------------------------------------------------------
 
@@ -143,16 +141,43 @@ INSERT INTO `tbl_prod_cat` (`link_id`, `product_id`, `cat_id`) VALUES
 (23, 23, 5),
 (24, 24, 5),
 (25, 25, 5),
-(26, 26, 6),
-(27, 27, 6),
-(28, 28, 6),
-(29, 29, 6),
-(30, 30, 6),
-(31, 31, 7),
-(32, 32, 7),
-(33, 33, 7),
-(34, 34, 7),
-(35, 35, 7);
+(26, 76, 6),
+(27, 77, 6),
+(28, 78, 6),
+(29, 79, 6),
+(30, 80, 6),
+(31, 81, 7),
+(32, 82, 7),
+(33, 83, 7),
+(34, 84, 7),
+(35, 85, 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_user`
+--
+
+CREATE TABLE `tbl_user` (
+  `user_id` mediumint(8) UNSIGNED NOT NULL,
+  `user_fname` varchar(250) NOT NULL,
+  `user_name` varchar(250) NOT NULL,
+  `user_pass` varchar(250) NOT NULL,
+  `user_email` varchar(250) NOT NULL,
+  `user_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_ip` varchar(50) NOT NULL DEFAULT 'no',
+  `user_login_time` datetime DEFAULT NULL,
+  `user_failed_login` int(3) DEFAULT '0',
+  `user_failed_login_time` datetime DEFAULT NULL,
+  `user_active` tinyint(3) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_user`
+--
+
+INSERT INTO `tbl_user` (`user_id`, `user_fname`, `user_name`, `user_pass`, `user_email`, `user_date`, `user_ip`, `user_login_time`, `user_failed_login`, `user_failed_login_time`, `user_active`) VALUES
+(24, 'admin', 'admin', '$2y$10$w..4e1K8eFGE3acyPsjgvubeXycxSPvTbzem9RsHcYYunZ8bnJtl6', 'admin@test.com', '2019-04-15 16:29:07', '::1', '2019-04-15 14:35:41', 0, NULL, 0);
 
 --
 -- Indexes for dumped tables
@@ -177,6 +202,12 @@ ALTER TABLE `tbl_prod_cat`
   ADD PRIMARY KEY (`link_id`);
 
 --
+-- Indexes for table `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  ADD PRIMARY KEY (`user_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -197,7 +228,12 @@ ALTER TABLE `tbl_product`
 --
 ALTER TABLE `tbl_prod_cat`
   MODIFY `link_id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-COMMIT;
+
+--
+-- AUTO_INCREMENT for table `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  MODIFY `user_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
