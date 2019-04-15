@@ -2,6 +2,11 @@
 require_once 'scripts/config.php';
 confirm_logged_in();
 greeting();
+if (isset($_GET['add'])) {
+    echo "<div class='alert alert-success' role='alert'>Product Added Successfully!</div>";
+} elseif (isset($_GET['edit'])) {
+    echo "<div class='alert alert-success' role='alert'>Product Edited Successfully!</div>";
+}
 $products = getAll('tbl_product');
 $message = greeting();
 $date = date_create($_SESSION['user_login_time']);
@@ -52,7 +57,7 @@ if (isset($_GET['success'])) {
         <div class="card-body">
           <h5 class="card-title"><?php echo $row['product_name']; ?></h5>
           <p class="card-text"><?php echo trim_length($row['product_description'], 100); ?></p>
-          <a href="admin_editproduct.php" class="btn btn-primary">Edit</a>
+          <a href="admin_editproduct.php/?product=<?php echo $row['product_id'] ?>" class="btn btn-primary">Edit</a>
           <a href="admin_deleteproduct.php" class="btn btn-danger">Delete</a>
         </div>
       </div>
