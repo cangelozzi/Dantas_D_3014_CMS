@@ -2,19 +2,16 @@
 require_once 'scripts/config.php';
 require_once 'scripts/connect.php';
 confirm_logged_in();
-$tbl = "tbl_categories";
+$tbl = "tbl_category";
 $product_categories = getAll($tbl);
 if (isset($_POST['submit'])) {
     // var_dump($_FILES['cover']);
-    $cover = $_FILES['cover'];
+    $image = $_FILES['image'];
     $title = trim($_POST['title']);
-    $year = trim($_POST['year']);
-    $run = trim($_POST['run']);
-    $trailer = trim($_POST['trailer']);
-    $release = trim($_POST['release']);
-    $story = trim($_POST['story']);
-    $genre = $_POST['genlist'];
-    $result = addMovie($cover, $title, $year, $run, $trailer, $release, $story, $genre);
+    $desc = trim($_POST['desc']);
+    $price = trim($_POST['price']);
+    $category = trim($_POST['category']);
+    $result = addMovie($image, $title, $desc, $price, $category);
     $message = $result;
 }
 ?>
