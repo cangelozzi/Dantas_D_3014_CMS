@@ -64,3 +64,15 @@ function trim_length($text, $maxLength, $trimIndicator = '...')
 
   return $text;
 }
+
+//! Image Resize
+function imageResize($imageResourceId, $width, $height)
+{
+  $targetWidth = 300;
+  $targetHeight = 300;
+  $targetLayer = imagecreatetruecolor($targetWidth, $targetHeight);
+
+  imagecopyresampled($targetLayer, $imageResourceId, 0, 0, 0, 0, $targetWidth, $targetHeight, $width, $height);
+
+  return $targetLayer;
+}
