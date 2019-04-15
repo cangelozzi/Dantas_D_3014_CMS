@@ -4,23 +4,23 @@ error_reporting(E_ALL | E_STRICT);
 require_once 'admin/scripts/config.php';
 $categories = getAll('tbl_category');
 if (isset($_GET['filter'])) {
-    $tbl = 'tbl_product';
-    $tbl_2 = 'tbl_category';
-    $tbl_3 = 'tbl_prod_cat';
-    $col = 'product_id';
-    $col_2 = 'cat_id';
-    $col_3 = 'cat_name';
-    $filter = $_GET['filter'];
-    $results = filterResults($tbl, $tbl_2, $tbl_3, $col, $col_2, $col_3, $filter);
-// var_dump($results);exit;
+  $tbl = 'tbl_product';
+  $tbl_2 = 'tbl_category';
+  $tbl_3 = 'tbl_prod_cat';
+  $col = 'product_id';
+  $col_2 = 'cat_id';
+  $col_3 = 'cat_name';
+  $filter = $_GET['filter'];
+  $results = filterResults($tbl, $tbl_2, $tbl_3, $col, $col_2, $col_3, $filter);
+  // var_dump($results);exit;
 } else {
-    $results = getAll('tbl_product');
+  $results = getAll('tbl_product');
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include 'templates/header.html'?>
+<?php include 'templates/header.html' ?>
 
 <body>
 
@@ -33,10 +33,10 @@ if (isset($_GET['filter'])) {
 
         <h1 class="my-4">Sports Check</h1>
         <div class="list-group">
-        <?php while ($row = $categories->fetch(PDO::FETCH_ASSOC)): ?>
+          <?php while ($row = $categories->fetch(PDO::FETCH_ASSOC)) : ?>
 
-          <a href="index.php?filter=<?php echo $row['cat_name']; ?>" class="list-group-item"><?php echo $row['cat_name']; ?></a>
-          <?php endwhile;?>
+            <a href="index.php?filter=<?php echo $row['cat_name']; ?>" class="list-group-item"><?php echo $row['cat_name']; ?></a>
+          <?php endwhile; ?>
         </div>
 
       </div>
@@ -72,21 +72,21 @@ if (isset($_GET['filter'])) {
         </div>
 
         <div class="row">
-        <?php while ($row = $results->fetch(PDO::FETCH_ASSOC)): ?>
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="details.php?id=<?php echo $row['product_id']; ?>"><img class="card-img-top" src="images/<?php echo $row['product_img']; ?>" alt="<?php echo $row['product_name']; ?>"></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="details.php?id=<?php echo $row['product_id']; ?>"><?php echo $row['product_name']; ?></a>
-                </h4>
-                <h5><?php echo $row['product_price']; ?></h5>
-                <p class="card-text"><?php echo $row['product_description']; ?>
-                </p>
+          <?php while ($row = $results->fetch(PDO::FETCH_ASSOC)) : ?>
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="details.php?id=<?php echo $row['product_id']; ?>"><img class="card-img-top" src="images/<?php echo $row['product_img']; ?>" alt="<?php echo $row['product_name']; ?>"></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="details.php?id=<?php echo $row['product_id']; ?>"><?php echo $row['product_name']; ?></a>
+                  </h4>
+                  <h5><?php echo $row['product_price']; ?></h5>
+                  <p class="card-text"><?php echo trim_length($row['product_description'], 150); ?>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <?php endwhile;?>
+          <?php endwhile; ?>
         </div>
         <!-- /.row -->
 
@@ -100,4 +100,4 @@ if (isset($_GET['filter'])) {
   <!-- /.container -->
 
   <!-- Footer -->
-  <?php include 'templates/footer.html'?>
+  <?php include 'templates/footer.html' ?>
