@@ -1,60 +1,9 @@
-# [Start Bootstrap - Shop Homepage](https://startbootstrap.com/template-overviews/shop-homepage/)
+# Custom CMS
 
-[Shop Homepage](http://startbootstrap.com/template-overviews/shop-homepage/) is a basic HTML online store homepage template for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/).
-
-## Preview
-
-[![Shop Homepage Preview](https://startbootstrap.com/assets/img/templates/shop-homepage.jpg)](https://blackrockdigital.github.io/startbootstrap-shop-homepage/)
-
-**[View Live Preview](https://blackrockdigital.github.io/startbootstrap-shop-homepage/)**
-
-## Status
-
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/BlackrockDigital/startbootstrap-shop-homepage/master/LICENSE)
-[![npm version](https://img.shields.io/npm/v/startbootstrap-shop-homepage.svg)](https://www.npmjs.com/package/startbootstrap-shop-homepage)
-[![Build Status](https://travis-ci.org/BlackrockDigital/startbootstrap-shop-homepage.svg?branch=master)](https://travis-ci.org/BlackrockDigital/startbootstrap-shop-homepage)
-[![dependencies Status](https://david-dm.org/BlackrockDigital/startbootstrap-shop-homepage/status.svg)](https://david-dm.org/BlackrockDigital/startbootstrap-shop-homepage)
-[![devDependencies Status](https://david-dm.org/BlackrockDigital/startbootstrap-shop-homepage/dev-status.svg)](https://david-dm.org/BlackrockDigital/startbootstrap-shop-homepage?type=dev)
-
-## Download and Installation
-
-To begin using this template, choose one of the following options to get started:
-* [Download the latest release on Start Bootstrap](https://startbootstrap.com/template-overviews/shop-homepage/)
-* Install via npm: `npm i startbootstrap-shop-homepage`
-* Clone the repo: `git clone https://github.com/BlackrockDigital/startbootstrap-shop-homepage.git`
-* [Fork, Clone, or Download on GitHub](https://github.com/BlackrockDigital/startbootstrap-shop-homepage)
-
-## Usage
-
-### Basic Usage
-
-After downloading, simply edit the HTML and CSS files included with the template in your favorite text editor to make changes. These are the only files you need to worry about, you can ignore everything else! To preview the changes you make to the code, you can open the `index.html` file in your web browser.
-
-### Advanced Usage
-
-After installation, run `npm install` and then run `gulp dev` which will open up a preview of the template in your default browser, watch for changes to core template files, and live reload the browser when changes are saved. You can view the `gulpfile.js` to see which tasks are included with the dev environment.
-
-You must have npm and Gulp installed globally on your machine in order to use these features.
-
-## Bugs and Issues
-
-Have a bug or an issue with this template? [Open a new issue](https://github.com/BlackrockDigital/startbootstrap-shop-homepage/issues) here on GitHub or leave a comment on the [template overview page at Start Bootstrap](http://startbootstrap.com/template-overviews/shop-homepage/).
-
-## About
-
-Start Bootstrap is an open source library of free Bootstrap templates and themes. All of the free templates and themes on Start Bootstrap are released under the MIT license, which means you can use them for any purpose, even for commercial projects.
-
-* https://startbootstrap.com
-* https://twitter.com/SBootstrap
-
-Start Bootstrap was created by and is maintained by **[David Miller](http://davidmiller.io/)**, Owner of [Blackrock Digital](http://blackrockdigital.io/).
-
-* http://davidmiller.io
-* https://twitter.com/davidmillerskt
-* https://github.com/davidtmiller
-
-Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
-
-## Copyright and License
-
-Copyright 2013-2019 Blackrock Digital LLC. Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-shop-homepage/blob/gh-pages/LICENSE) license.
+Assignment Description:Team (2 members) to create a custom CMS topower a products/products details site for Sports Chek(​https://www.sportchek.ca/​). Additional features such as filtering and search mustbe added to this site for ease-of-use.Assignment Requirements:You will be sourcing all images from the Sports Chek website (minimum of 35products. 5 products for each of the 7 categories). The CMS will allow admins tologin to, create, update and delete products (pictures, text) on the Sports Chek site.
+1.The landing page should have at least 35 products listed.
+2.Customers can search and filter by category among the 35 products withoutlogin.
+3.Admins can log in through /admin page with right credentials.
+4.After login, the dashboard page will have a navigation menu for admins aboutwhere to go.
+5.Admins can create, update and delete products (pictures, text, and category)on the site after login.
+6.*CSS styles are optional for the project.
