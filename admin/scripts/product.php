@@ -1,5 +1,5 @@
 <?php
-
+//! ------------------- ADD PRODUCT -----------------------
 function addProduct($image, $title, $desc, $price, $category)
 {
     try {
@@ -119,10 +119,17 @@ function addProduct($image, $title, $desc, $price, $category)
         return $error;
     }
 }
+
+//!  ------------- EDIT PRODUCT -----------------------
 function editProduct($image, $title, $desc, $price, $category)
 {
-    try {
-        include 'connect.php';
+      
+      try {
+          include 'connect.php';
+        
+        if (isset($_GET['product'])) {
+          $edit_id = $_GET['product'];
+        }
 
         $product_name = htmlspecialchars($title);
 
@@ -199,35 +206,38 @@ function editProduct($image, $title, $desc, $price, $category)
 
         $product_content = htmlspecialchars($desc);
 
-        $insert_product_query = 'UPDATE tbl_product(product_name, product_description,';
-        $insert_product_query .= ' product_img, product_price)';
-        $insert_product_query .= ' VALUES(:product_name, :product_description, :product_img,';
-        $insert_product_query .= ' :product_price)';
+        $query = "UPDATE tbl_product SET ";
+        $query .= "product_name = :product_name, ";
+        $query .= "product_description = :product_description, ";
+        $query .= "product_img =  :product_image, ";
+        $query .= "product_price = :product_price ";
+        $query .= "WHERE product_id = :product_id ";
 
-        $insert_product = $pdo->prepare($insert_product_query);
-        $insert_result = $insert_product->execute(
-            array(
-                ':product_name' => $title,
-                ':product_description' => $product_content,
-                ':product_img' => $product_image,
-                ':product_price' => $price,
-            )
+        $set_product = $pdo->prepare($query);
+        $set_product->execute(
+          array(
+            ':product_name' => $title,
+            ':product_description' => nl2br($product_content),
+            ':product_price' => $price,
+            ':product_image' => $product_image,
+            ':product_id' => $edit_id,
+          )
         );
 
-        if (!$insert_result) {
-            throw new Exception('Failed to insert the new product!');
-        }
 
-        $last_id = $pdo->lastInsertId();
-        $insert_cat_query = 'UPDATE tbl_prod_cat(product_id, cat_id) VALUES(:product_id, :cat_id)';
+        if (!$set_product) {
+          throw new Exception('Failed to update product!');
+        }
+    
+        $insert_cat_query = "UPDATE tbl_prod_cat SET cat_id = :cat_id WHERE product_id = :product_id";
         $insert_cat = $pdo->prepare($insert_cat_query);
         $insert_cat->execute(
             array(
-                ':product_id' => $last_id,
-                ':cat_id' => $category,
+                ':product_id' => $edit_id,
+                ':cat_id' => $category
             )
         );
-        if (!$insert_cat->rowCount()) {
+        if (!$insert_cat) {
             throw new Exception('Failed to set Category!');
         }
         //5. If all of above works fine, redirect user to index.php
@@ -237,4 +247,50 @@ function editProduct($image, $title, $desc, $price, $category)
         $error = $e->getMessage();
         return $error;
     }
+}
+
+//! ------------------- DELETE PRODUCT -----------------------
+function deleteItem($delete_product_id)
+{
+  include 'connect.php';
+
+  $img_query = "SELECT product_img FROM tbl_product WHERE `product_id` = :deleteproduct";
+  $img_to_delete = $pdo->prepare($img_query);
+  $img_to_delete->execute(
+    array(
+      ':deleteproduct' => $delete_product_id
+    )
+  );
+
+  $images = [];
+  while ($row = $img_to_delete->fetch(PDO::FETCH_ASSOC)) {
+    $images[] = $row;
+  };
+
+  // delete img from folder
+  unlink('../images/' . $images[0]['product_img']);
+
+
+  $delete_product_query = 'DELETE FROM tbl_product WHERE product_id = :id';
+  $delete_product = $pdo->prepare($delete_product_query);
+  $delete_product->execute(
+    array(
+      ':id' => $delete_product_id
+    )
+  );
+
+  $delete_link_query = 'DELETE FROM tbl_prod_cat WHERE product_id = :id';
+  $delete_link = $pdo->prepare($delete_link_query);
+  $delete_link->execute(
+    array(
+      ':id' => $delete_product_id
+    )
+  );
+
+  if ($delete_product->rowCount() && $delete_link->rowCount()) {
+    Header('Location: index.php?product_deleted');
+  } else {
+    $message = 'Not deleted yet..';
+    return $message;
+  }
 }
